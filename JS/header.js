@@ -2,7 +2,7 @@ class MyHeader extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `<header>
       <div class="logo" href="index.html">
-        <img src="/Images/logo.png" alt="RandomBoxAPI Logo" />
+        <img src="Images/logo.png" alt="RandomBoxAPI Logo" />
       </div>
       <nav id="web-header">
         <ul>
