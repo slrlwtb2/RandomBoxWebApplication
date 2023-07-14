@@ -1,0 +1,107 @@
+body {
+    font-family: 'VT323', monospace;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .container {
+    width: 80%; /* Adjust the width as needed */
+    max-width: 400px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.form-container {
+  margin-bottom: 20px;
+}
+
+form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+}
+
+form input[type="text"],
+form input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+form button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #428bca;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+form button:hover {
+  background-color: #3276b1;
+}
+
+#message {
+  text-align: center;
+  margin-top: 20px;
+  font-weight: bold;
+  color: #f00;
+}
+
+/* Custom styles for User Registration and Login forms */
+.container {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+}
+
+h1 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 30px;
+}
+
+form input[type="text"],
+form input[type="password"] {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  padding: 10px;
+  transition: border-color 0.3s;
+}
+
+form input[type="text"]:focus,
+form input[type="password"]:focus {
+  border-color: #428bca;
+}
+
+form button {
+  background-color: #428bca;
+  color: #fff;
+  font-weight: bold;
+  letter-spacing: 1px;
+  transition: background-color 0.3s;
+}
+
+form button:hover {
+  background-color: #3276b1;
+}

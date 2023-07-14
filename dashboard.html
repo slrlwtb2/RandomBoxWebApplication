@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>API Buttons</title>
+    <link rel="stylesheet" href="/Css/Header.css" />
+    <link rel="stylesheet" href="/Css/dashboard.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=VT323&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <my-header></my-header>
+    <h1>Admin's Menu</h1>
+    <button onclick="addItemToInventory()">Add Item to Inventory</button>
+    <button onclick="createItem()">Create Item</button>
+    <button onclick="createBox()">Create Box</button>
+    <button onclick="deleteItem()">Delete Item</button>
+    <button onclick="updateItem()">Update Item</button>
+    <button onclick="addItemToBox()">Add Item to Box</button>
+    <button onclick="uploadPicture()">Upload Picture</button>
+    <script src="/JS/header.js" type="module"></script>
+
+    <script>
+      function sendRequest(method, url) {
+        fetch(url, {
+          method: method,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => console.log(data))
+          .catch((error) => console.error("Error:", error));
+      }
+
+      function addItemToInventory() {
+        alert("sendRequest('POST', '/api/Inventory/AddItemtoInv');");
+      }
+
+      function createItem() {
+        alert("sendRequest('POST', '/api/Item/CreateItem');");
+      }
+
+      function createBox() {
+        alert("sendRequest('POST', '/api/Item/CreateBox');");
+      }
+
+      function deleteItem() {
+        const itemId = prompt("Enter the item ID to delete:");
+        if (itemId) {
+          alert("sendRequest('DELETE', `/api/Item/DeleteItem/${itemId}`);");
+        }
+      }
+
+      function updateItem() {
+        alert("sendRequest('PUT', '/api/Item/UpdateItem');");
+      }
+
+      function addItemToBox() {
+        alert("sendRequest('POST', '/api/Item/AddItemToBox');");
+      }
+
+      function uploadPicture() {
+        alert("sendRequest('POST', '/api/Item/UploadPicture');");
+      }
+
+      // Check user's role on page load
+      document.addEventListener("DOMContentLoaded", function () {
+        const token = localStorage.getItem("jwtToken");
+
+        if (token) {
+          const decodedToken = parseJwt(token);
+          const role =
+            decodedToken[
+              "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+            ];
+
+          if (role !== "ADMIN") {
+            window.location.href = "index.html";
+          }
+        } else {
+          window.location.href = "index.html";
+        }
+      });
+
+      function parseJwt(token) {
+        const base64Url = token.split(".")[1];
+        const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+        const jsonPayload = decodeURIComponent(
+          atob(base64)
+            .split("")
+            .map(function (c) {
+              return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+            })
+            .join("")
+        );
+
+        return JSON.parse(jsonPayload);
+      }
+    </script>
+  </body>
+</html>

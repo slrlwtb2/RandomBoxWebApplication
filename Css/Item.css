@@ -1,0 +1,42 @@
+body {
+    font-family: 'VT323', monospace;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+  }
+  
+  my-header {
+    margin-top: 50px;
+    margin-bottom: 20px;
+  }
+  
+  .item-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 10px;
+    padding: 20px;
+    border: 2px solid #131212;
+    background-color: #eef1d7;
+  }
+  
+  .item img {
+    max-width: 100px;
+    height: auto;
+    margin-bottom: 10px;
+  }
+  
+  .item div {
+    margin-bottom: 5px;
+  }
+  

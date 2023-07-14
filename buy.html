@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RandomBox</title>
+    <link rel="stylesheet" href="/Css/Header.css" />
+    <link rel="stylesheet" href="/Css/Buy.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=VT323&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <my-header></my-header>
+    <h1>Buy</h1>
+    <div id="box-list"></div>
+    <div id="item-list"></div>
+    <!-- Add this div to display the list of items -->
+
+    <script src="/JS/header.js" type="module"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const boxList = document.getElementById("box-list");
+        const token = localStorage.getItem("jwtToken");
+
+        if (token) {
+          fetch(
+            "https://randomboxwebapplication.azurewebsites.net/api/Item/GetBoxes",
+            {
+              method: "GET",
+              headers: {
+                Authorization: "Bearer " + token,
+                "Content-Type": "application/json",
+              },
+            }
+          )
+            .then((response) => {
+              if (response.ok) {
+                return response.json();
+              } else {
+                throw new Error(
+                  "Request failed with status " + response.status
+                );
+              }
+            })
+            .then((data) => {
+              const itemList = data.map((item) => {
+                return `
+            <div class="box-item">
+              <img src="https://randomboxwebapplication.azurewebsites.net/api/Item/GetImage/${item.id}" alt="${item.name}" />
+              <div>${item.name}</div>
+              <div>Rarity: ${item.rarity}</div>
+              <div>Price: ${item.price}</div>
+              <button onclick="inspectItem(${item.id})">Inspect</button>
+              <button onclick="confirmBuyBox(${item.id})">Buy</button>
+            </div>
+          `;
+              });
+
+              boxList.innerHTML = itemList.join("");
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+            });
+        }
+      });
+
+      function inspectItem(itemId) {
+        const token = localStorage.getItem("jwtToken");
+
+        if (token) {
+          fetch(
+            `https://randomboxwebapplication.azurewebsites.net/api/Item/GetItemsinBox/${itemId}`,
+            {
+              method: "GET",
+              headers: {
+                Authorization: "Bearer " + token,
+                "Content-Type": "application/json",
+              },
+            }
+          )
+            .then((response) => {
+              if (response.ok) {
+                return response.json();
+              } else {
+                throw new Error(
+                  "Request failed with status " + response.status
+                );
+              }
+            })
+            .then((data) => {
+              console.log("Response from GetItemsinBox:", data);
+
+              const itemPromises = data.map((item) => {
+                return fetch(
+                  `https://randomboxwebapplication.azurewebsites.net/api/Item/GetItemNameById/${item.itemId}`,
+                  {
+                    method: "GET",
+                    headers: {
+                      Authorization: "Bearer " + token,
+                      "Content-Type": "application/json",
+                    },
+                  }
+                ).then((response) => {
+                  if (response.ok) {
+                    return response.text();
+                  } else {
+                    throw new Error(
+                      "Request failed with status " + response.status
+                    );
+                  }
+                });
+              });
+
+              Promise.all(itemPromises)
+                .then((itemNames) => {
+                  const itemList = itemNames.join(", ");
+                  alert("Item Names: " + itemList);
+                })
+                .catch((error) => {
+                  console.error("Error:", error);
+                });
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+            });
+        }
+      }
+
+      function confirmBuyBox(boxId) {
+        const confirmation = confirm("Are you sure you want to buy this box?");
+
+        if (confirmation) {
+          buyBox(boxId);
+        }
+      }
+
+      function buyBox(boxId) {
+        const token = localStorage.getItem("jwtToken");
+
+        if (token) {
+          fetch(
+            `https://randomboxwebapplication.azurewebsites.net/api/Inventory/BuyBox/${boxId}`,
+            {
+              method: "PUT",
+              headers: {
+                Authorization: "Bearer " + token,
+                "Content-Type": "application/json",
+              },
+            }
+          )
+            .then((response) => {
+              if (response.ok) {
+                return response.json();
+              } else {
+                throw new Error(
+                  "Request failed with status " + response.status
+                );
+              }
+            })
+            .then((data) => {
+              alert("Box purchased successfully!");
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+            });
+        }
+      }
+    </script>
+  </body>
+</html>

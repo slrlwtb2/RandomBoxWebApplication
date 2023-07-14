@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RandomBox</title>
+    <link rel="stylesheet" href="/Css/Register.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=VT323&display=swap"
+      rel="stylesheet"
+    />
+    <script src="/JS/Register.js" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="form-container">
+        <h1>Registration</h1>
+        <form id="registrationForm">
+          <label for="username">Username:</label>
+          <input type="text" id="username" required />
+
+          <label for="password">Password:</label>
+          <input type="password" id="password" required />
+
+          <button type="submit">Register</button>
+        </form>
+      </div>
+
+      <hr />
+
+      <div class="form-container">
+        <h1>Login</h1>
+        <form id="loginForm">
+          <label for="loginUsername">Username:</label>
+          <input type="text" id="loginUsername" required />
+
+          <label for="loginPassword">Password:</label>
+          <input type="password" id="loginPassword" required />
+
+          <button type="submit">Login</button>
+        </form>
+      </div>
+
+      <div id="message"></div>
+    </div>
+  </body>
+</html>

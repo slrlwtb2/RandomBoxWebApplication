@@ -1,0 +1,103 @@
+/* Reset default margin and padding */
+body, h1, h2, h3, h4, h5, h6, p, ul, li {
+  margin: 0;
+  padding: 0;
+}
+
+/* Set the background color */
+body {
+  background-color: #ffffff;
+}
+
+/* Container for the logo and title */
+.logo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* Logo image */
+.logo img {
+  height: 30px;
+  width: 30px;
+  margin-right: 10px;
+}
+
+/* Title */
+.logo h1 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Header styles */
+header {
+  background-color: #edede8;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 10px;
+}
+
+/* Navigation styles */
+nav ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+nav ul li {
+  margin-right: 20px;
+}
+
+nav ul li a {
+  color: #333;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+  color: #3d6be1;
+}
+
+/* Username display styles */
+.username-display {
+  display: flex;
+  align-items: center;
+}
+
+.username-display span {
+  margin-right: 10px;
+  color: #333;
+}
+
+.username-display button {
+  padding: 5px 10px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border-radius: 5px;
+}
+
+.username-display button:hover {
+  background-color: #29f336;
+  color: #333;
+}
+
+/* Content styles */
+.content {
+  padding: 20px;
+  margin: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+#web-header ul {
+  display: flex;
+  justify-content: center;
+}

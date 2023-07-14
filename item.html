@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Items</title>
+    <link rel="stylesheet" href="/Css/Item.css" />
+    <link rel="stylesheet" href="/Css/Header.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=VT323&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <my-header></my-header>
+    <h1>Items</h1>
+
+    <div id="item-container" class="item-container"></div>
+    <script src="/JS/header.js" type="module"></script>
+    <script>
+      function parseJwt(token) {
+        const base64Url = token.split(".")[1];
+        const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+        const jsonPayload = decodeURIComponent(
+          atob(base64)
+            .split("")
+            .map(function (c) {
+              return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+            })
+            .join("")
+        );
+
+        return JSON.parse(jsonPayload);
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const token = localStorage.getItem("jwtToken");
+
+        if (token) {
+          const decodedToken = parseJwt(token);
+
+          fetch(
+            "https://randomboxwebapplication.azurewebsites.net/api/Item/GetItems",
+            {
+              method: "GET",
+              headers: {
+                Authorization: "Bearer " + token,
+                "Content-Type": "application/json",
+              },
+            }
+          )
+            .then((response) => {
+              if (response.ok) {
+                return response.json();
+              } else {
+                throw new Error(
+                  "Request failed with status " + response.status
+                );
+              }
+            })
+            .then((data) => {
+              // Process the response data and display it on the page
+              const itemList = data.map((item) => {
+                return `
+                    <div class="item">
+                      <img src="https://randomboxwebapplication.azurewebsites.net/api/Item/GetImage/${item.id}" alt="${item.name}" />
+                      <div>${item.name}</div>
+                      <div>Rarity: ${item.rarity}</div>
+                      <div>Price: ${item.price}</div>
+                    </div>
+                  `;
+              });
+
+              const itemContainer = document.getElementById("item-container");
+              itemContainer.innerHTML = itemList.join("");
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+            });
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RandomBox</title>
+    <link rel="stylesheet" href="/Css/Header.css" />
+    <link rel="stylesheet" href="/Css/Contact.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=VT323&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <my-header></my-header>
+    <h1>Contact<br /><br /></h1>
+    <div class="me-container">
+      <img src="/Images/me.jpg" class="round-image" alt="Me" />
+    </div>
+
+    <p>
+      Hi my name is Thanasiri Premasathira. Or you can call me Richy<br /><br />
+    </p>
+    <div class="logo-container">
+      <a href="https://web.facebook.com/Thanasiri.Premasathira" target="_blank">
+        <img src="/Images/facebook_logo.png" alt="Facebook" />
+      </a>
+      <a href="https://www.instagram.com/thanaslri/" target="_blank">
+        <img src="/Images/instagram_logo.png" alt="Instagram" />
+      </a>
+      <img src="/Images/email_logo.png" alt="Email" onclick="copyEmail()" />
+    </div>
+
+    <script src="/JS/header.js" type="module"></script>
+    <script>
+      function copyEmail() {
+        const email = "slrlwtb2@gmail.com";
+        navigator.clipboard
+          .writeText(email)
+          .then(() => {
+            alert("Email has been copied: " + email);
+          })
+          .catch(() => {
+            alert("something went wrong");
+          });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,61 @@
+body{
+  font-family: 'VT323', monospace;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Updated */
+  height: 100vh;
+  }
+
+  my-header {
+    margin-top: 50px;
+    margin-bottom: 20px;
+  }
+#inventory-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .inventory-item {
+    flex: 0 0 250px;
+    margin: 10px;
+    padding: 30px;
+    border: 2px solid #131212;
+    box-sizing: border-box;
+    background-color: #eef1d7;
+
+  }
+  /* CSS Styles for buttons */
+.inventory-item button {
+  border: none;
+  border-radius: 20px;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Sell button styles */
+.inventory-item button.sell {
+  background-color: #e74c3c; /* Red color */
+}
+
+/* Open Box button styles */
+.inventory-item button.open-box {
+  background-color: #27ae60; /* Green color */
+}
+
+/* Hover effect for buttons */
+.inventory-item button:hover {
+  opacity: 0.8; /* Reduce opacity on hover */
+}
+
+
+  

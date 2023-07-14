@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RandomBox</title>
+    <link rel="stylesheet" href="/Css/Header.css" />
+    <link rel="stylesheet" href="/Css/index.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=VT323&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <my-header></my-header>
+
+    <p id="welcome-message">
+      Welcome to RanDom Box! Get ready to unlock excitement and uncover hidden
+      treasures.<br />
+      Open a box and dive into a world of surprises!
+    </p>
+    <div class="logo-container">
+      <img src="/Images/logo.png" alt="Logo" class="logo" />
+    </div>
+    <div class="button-container">
+      <button onclick="checkLogin()">Buy Now</button>
+    </div>
+
+    <script src="/JS/header.js" type="module"></script>
+    <script>
+      function checkLogin() {
+        const token = localStorage.getItem("jwtToken");
+        if (token) {
+          window.location.href = "buy.html";
+        } else {
+          window.location.href = "register.html";
+        }
+      }
+    </script>
+  </body>
+</html>
