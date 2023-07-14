@@ -10,7 +10,7 @@ https://slrlwtb2.github.io/RandomBoxWebApplication/
 
   
 **How to use the demo website:**  
-This website serves as an Front-end(using JavaScript) and fetch this API  : [RandomBoxAPI](https://github.com/slrlwtb2/RandomBoxAPI)
+This website serves as an Front-end(using JavaScript) to fetch this API  : [RandomBoxAPI](https://github.com/slrlwtb2/RandomBoxAPI)
 
 -**Discover treasures we have and uncover their rareness**  
 - Register and Login in to website
