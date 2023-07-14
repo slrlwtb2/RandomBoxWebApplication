@@ -9,7 +9,7 @@ class MyHeader extends HTMLElement {
           <li><a href="index.html">Home</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="contact.html">Contact</a></li>
-          <li><a href="https://github.com/" target="_blank">Github</a></li>
+          <li><a href="https://github.com/slrlwtb2" target="_blank">Github</a></li>
         </ul>
       </nav>
       <nav id="user-options">
