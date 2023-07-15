@@ -6,7 +6,7 @@
 **Website Overview**
 -
 
-enter the website ----> https://slrlwtb2.github.io/RandomBoxWebApplication/
+Enter the website ----> https://slrlwtb2.github.io/RandomBoxWebApplication/
 
   
 **How to use the demo website:**  
