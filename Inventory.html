@@ -137,6 +137,7 @@
             .then((data) => {
               // Display the inventory data on the page
               const itemListPromises = data.map(async (item) => {
+                console.log(item);
                 const response = await fetch(
                   `${getItemDiscriminatorURL}/${item.itemId}`
                 );
@@ -148,7 +149,11 @@
                     <img src="https://randomboxwebapplication.azurewebsites.net/api/Item/GetImage/${
                       item.itemId
                     }" alt="${item.itemName}" style="width: 100px;" />
-                    <div>${item.itemName} (Quantity: ${item.quantity})</div>
+                    <div>${item.itemName}<br> 
+                      Rarity: ${item.rarity}<br>
+                      Price: ${item.price}<br>
+                      (Quantity: ${item.quantity})
+                    </div>
                     ${
                       isBox
                         ? `<button class="sell" onclick="sellItem(${item.itemId})">Sell</button>
