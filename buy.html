@@ -152,19 +152,24 @@
             }
           )
             .then((response) => {
+              console.log("Response status:", response.status);
               if (response.ok) {
                 return response.json();
               } else {
-                throw new Error(
-                  "Request failed with status " + response.status
-                );
+                throw new Error(response.status);
               }
             })
             .then((data) => {
+              console.log("Response data:", data);
               alert("Box purchased successfully!");
             })
             .catch((error) => {
-              alert("Box purchased successfully!");
+              console.log("Error:", error);
+              if (error.message === "400") {
+                alert("Insufficient balance, you don't have enough credits");
+              } else {
+                alert("An error occurred while purchasing the box.");
+              }
             });
         }
       }
