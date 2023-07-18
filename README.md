@@ -1,7 +1,7 @@
 
 ## RandomBox Web Application
 
-![Web application](https://i.postimg.cc/mrSDBS4b/imageedit-2-9132421280.png)
+[imageedit-2-9132421280.png](https://postimg.cc/yJkBTcW5)
 
 
 **Website Overview**
