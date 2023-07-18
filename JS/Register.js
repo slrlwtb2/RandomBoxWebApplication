@@ -4,8 +4,17 @@ document.getElementById('loginForm').addEventListener('submit', loginUser);
 var registerURL = 'https://randomboxwebapplication.azurewebsites.net/api/User/Register';
 var LoginURL = 'https://randomboxwebapplication.azurewebsites.net/api/User/login'; 
 
+function showLoadingScreen() {
+  document.getElementById('loadingScreen').style.display = 'block';
+}
+
+function hideLoadingScreen() {
+  document.getElementById('loadingScreen').style.display = 'none';
+}
+
 function registerUser(e) {
   e.preventDefault();
+  showLoadingScreen();
 
   const username = document.getElementById('username').value;
   const password = document.getElementById('password').value;
@@ -18,6 +27,7 @@ function registerUser(e) {
     body: JSON.stringify({ Username: username, Password: password })
   })
     .then(response => {
+      hideLoadingScreen();
       if (response.ok) {
         showMessage('Registration successful. Please log in.');
       } else {
@@ -25,43 +35,46 @@ function registerUser(e) {
       }
     })
     .catch(error => {
+      hideLoadingScreen();
       console.error('Error:', error);
       showMessage('An error occurred during registration.');
     });
 }
 
 function loginUser(e) {
-    e.preventDefault();
-  
-    const username = document.getElementById('loginUsername').value;
-    const password = document.getElementById('loginPassword').value;
-  
-    fetch(LoginURL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ Username: username, Password: password })
+  e.preventDefault();
+  showLoadingScreen();
+
+  const username = document.getElementById('loginUsername').value;
+  const password = document.getElementById('loginPassword').value;
+
+  fetch(LoginURL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ Username: username, Password: password })
+  })
+    .then(response => {
+      hideLoadingScreen();
+      if (response.ok) {
+        response.text().then(token => {
+          // Store the token in localStorage
+          localStorage.setItem('jwtToken', token);
+          showMessage('Login successful');
+          // Redirect to index.html or any other page
+          window.location.href = 'index.html';
+        });
+      } else {
+        showMessage('Invalid username or password. Please try again.');
+      }
     })
-      .then(response => {
-        if (response.ok) {
-          response.text().then(token => {
-            // Store the token in localStorage
-            localStorage.setItem('jwtToken', token);
-            showMessage('Login successful');
-            // Redirect to index.html or any other page
-            window.location.href = 'index.html';
-          });
-        } else {
-          showMessage('Invalid username or password. Please try again.');
-        }
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        showMessage('An error occurred during login.');
-      });
-  }
-  
+    .catch(error => {
+      hideLoadingScreen();
+      console.error('Error:', error);
+      showMessage('An error occurred during login.');
+    });
+}
 
 function showMessage(message) {
   document.getElementById('message').textContent = message;
