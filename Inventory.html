@@ -15,7 +15,10 @@
   <body>
     <my-header></my-header>
     <div id="inventory-list"></div>
-
+    <!-- Loading screen -->
+    <div id="loadingScreen" style="display: none">
+      <div id="loadingSpinner"></div>
+    </div>
     <script src="JS/header.js"></script>
     <script>
       function parseJwt(token) {
@@ -31,6 +34,15 @@
         );
 
         return JSON.parse(jsonPayload);
+      }
+      // Show loading screen
+      function showLoadingScreen() {
+        document.getElementById("loadingScreen").style.display = "block";
+      }
+
+      // Hide loading screen
+      function hideLoadingScreen() {
+        document.getElementById("loadingScreen").style.display = "none";
       }
 
       // Function to handle selling an item
@@ -51,6 +63,7 @@
             "Are you sure you want to sell this item?"
           );
           if (confirmation) {
+            showLoadingScreen();
             fetch(
               `https://randomboxwebapplication.azurewebsites.net/api/Inventory/SellItemfromInventory/${itemId}/amount?amount=${amount}`,
               {
@@ -71,6 +84,7 @@
                 }
               })
               .catch((error) => {
+                hideLoadingScreen();
                 console.error("Error:", error);
               });
           }
@@ -92,6 +106,7 @@
             "Are you sure you want to open this box?"
           );
           if (confirmation) {
+            showLoadingScreen();
             fetch(
               `https://randomboxwebapplication.azurewebsites.net/api/Inventory/openbox/${itemId}`,
               {
@@ -108,6 +123,7 @@
                 alert(`Congratulation! You received item: ${data.name}`);
               })
               .catch((error) => {
+                hideLoadingScreen();
                 console.error("Error:", error);
               });
           }
@@ -118,7 +134,7 @@
       document.addEventListener("DOMContentLoaded", function () {
         const inventoryList = document.getElementById("inventory-list");
         const token = localStorage.getItem("jwtToken");
-
+        showLoadingScreen();
         if (token) {
           var getItemURL =
             "https://randomboxwebapplication.azurewebsites.net/api/Inventory/GetById";
@@ -166,13 +182,16 @@
 
               Promise.all(itemListPromises)
                 .then((itemList) => {
+                  hideLoadingScreen();
                   inventoryList.innerHTML = itemList.join("");
                 })
                 .catch((error) => {
+                  hideLoadingScreen();
                   console.error("Error:", error);
                 });
             })
             .catch((error) => {
+              hideLoadingScreen();
               console.error("Error:", error);
             });
         }

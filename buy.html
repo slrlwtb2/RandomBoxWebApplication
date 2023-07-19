@@ -17,6 +17,10 @@
     <h1>Buy</h1>
     <div id="box-list"></div>
     <div id="item-list"></div>
+
+    <div id="loadingScreen" style="display: none">
+      <div id="loadingSpinner"></div>
+    </div>
     <!-- Add this div to display the list of items -->
 
     <script src="JS/header.js" type="module"></script>
@@ -25,7 +29,18 @@
         const boxList = document.getElementById("box-list");
         const token = localStorage.getItem("jwtToken");
 
+        // Show loading screen
+        function showLoadingScreen() {
+          document.getElementById("loadingScreen").style.display = "block";
+        }
+
+        // Hide loading screen
+        function hideLoadingScreen() {
+          document.getElementById("loadingScreen").style.display = "none";
+        }
+
         if (token) {
+          showLoadingScreen();
           fetch(
             "https://randomboxwebapplication.azurewebsites.net/api/Item/GetBoxes",
             {
@@ -60,8 +75,10 @@
               });
 
               boxList.innerHTML = itemList.join("");
+              hideLoadingScreen();
             })
             .catch((error) => {
+              hideLoadingScreen();
               console.error("Error:", error);
             });
         }
