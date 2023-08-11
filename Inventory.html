@@ -65,7 +65,7 @@
           if (confirmation) {
             showLoadingScreen();
             fetch(
-              `https://randomboxwebapplication.azurewebsites.net/api/Inventory/SellItemfromInventory/${itemId}/amount?amount=${amount}`,
+              `http://richy1710-001-site1.btempurl.com/api/Inventory/SellItemfromInventory/${itemId}/amount?amount=${amount}`,
               {
                 method: "PUT",
                 headers: {
@@ -108,7 +108,7 @@
           if (confirmation) {
             showLoadingScreen();
             fetch(
-              `https://randomboxwebapplication.azurewebsites.net/api/Inventory/openbox/${itemId}`,
+              `http://richy1710-001-site1.btempurl.com/api/Inventory/openbox/${itemId}`,
               {
                 method: "PUT",
                 headers: {
@@ -137,9 +137,9 @@
         showLoadingScreen();
         if (token) {
           var getItemURL =
-            "https://randomboxwebapplication.azurewebsites.net/api/Inventory/GetById";
+            "http://richy1710-001-site1.btempurl.com/api/Inventory/GetById";
           var getItemDiscriminatorURL =
-            "https://randomboxwebapplication.azurewebsites.net/api/Item/GetItemDiscriminator";
+            "http://richy1710-001-site1.btempurl.com/api/Item/GetItemDiscriminator";
 
           // Retrieve the inventory data using API call
           fetch(getItemURL, {
@@ -162,7 +162,7 @@
 
                 return `
                   <div class="inventory-item">
-                    <img src="https://randomboxwebapplication.azurewebsites.net/api/Item/GetImage/${
+                    <img src="http://richy1710-001-site1.btempurl.com/api/Item/GetImage/${
                       item.itemId
                     }" alt="${item.itemName}" style="width: 100px;" />
                     <div>${item.itemName}<br> 

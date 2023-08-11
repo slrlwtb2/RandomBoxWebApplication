@@ -1,8 +1,8 @@
 document.getElementById('registrationForm').addEventListener('submit', registerUser);
 document.getElementById('loginForm').addEventListener('submit', loginUser);
 
-var registerURL = 'https://randomboxwebapplication.azurewebsites.net/api/User/Register';
-var LoginURL = 'https://randomboxwebapplication.azurewebsites.net/api/User/login'; 
+var registerURL = 'http://richy1710-001-site1.btempurl.com/api/User/Register';
+var LoginURL = 'http://richy1710-001-site1.btempurl.com/api/User/login'; 
 
 function showLoadingScreen() {
   document.getElementById('loadingScreen').style.display = 'block';
