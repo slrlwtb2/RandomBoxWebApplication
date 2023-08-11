@@ -41,16 +41,13 @@
 
           showLoadingScreen(); // Show loading screen while fetching data
 
-          fetch(
-            "https://randomboxwebapplication.azurewebsites.net/api/Item/GetItems",
-            {
-              method: "GET",
-              headers: {
-                Authorization: "Bearer " + token,
-                "Content-Type": "application/json",
-              },
-            }
-          )
+          fetch("http://richy1710-001-site1.btempurl.com/api/Item/GetItems", {
+            method: "GET",
+            headers: {
+              Authorization: "Bearer " + token,
+              "Content-Type": "application/json",
+            },
+          })
             .then((response) => {
               hideLoadingScreen(); // Hide loading screen after the fetch
               if (response.ok) {
@@ -62,19 +59,45 @@
               }
             })
             .then((data) => {
-              // Process the response data and display it on the page
-              const itemList = data.map((item) => {
-                return `
-                    <div class="item">
-                      <img src="https://randomboxwebapplication.azurewebsites.net/api/Item/GetImage/${item.id}" alt="${item.name}" />
-                      <div>${item.name}</div>
-                      <div>Rarity: ${item.rarity}</div>
-                      <div>Price: ${item.price}</div>
-                    </div>
-                  `;
+              const itemPromises = data.map((item) => {
+                return fetch(
+                  `http://richy1710-001-site1.btempurl.com/api/Item/GetItemDiscriminator/${item.id}`,
+                  {
+                    method: "GET",
+                    headers: {
+                      Authorization: "Bearer " + token,
+                      "Content-Type": "application/json",
+                    },
+                  }
+                ).then((response) => {
+                  if (response.ok) {
+                    return response.text(); // Assuming the response contains "Item" or "Box"
+                  } else {
+                    throw new Error(
+                      "Request failed with status " + response.status
+                    );
+                  }
+                });
               });
 
-              itemContainer.innerHTML = itemList.join("");
+              return Promise.all(itemPromises).then((itemDiscriminators) => {
+                const itemsOnly = data.filter(
+                  (item, index) => itemDiscriminators[index] === "Item"
+                );
+
+                const itemList = itemsOnly.map((item) => {
+                  return `
+                      <div class="item">
+                        <img src="http://richy1710-001-site1.btempurl.com/api/Item/GetImage/${item.id}" alt="${item.name}" />
+                        <div>${item.name}</div>
+                        <div>Rarity: ${item.rarity}</div>
+                        <div>Price: ${item.price}</div>
+                      </div>
+                    `;
+                });
+
+                itemContainer.innerHTML = itemList.join("");
+              });
             })
             .catch((error) => {
               hideLoadingScreen(); // Hide loading screen on error too
