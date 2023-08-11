@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('username').textContent = 'Hi ' + username;
 
     // Check if the user has the 'admin' role
-    if (roles && roles.includes('ADMIN')) {
+    if (roles && roles.includes('Admin')) {
       adminOptions.style.display = 'block';
     }
 
