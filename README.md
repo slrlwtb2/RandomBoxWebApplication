@@ -7,7 +7,7 @@
 **Website Overview**
 -
 
-Enter the website ----> [HERE](https://slrlwtb2.github.io/RandomBoxWebApplication/)
+Enter the website ----> [HERE](https://slrlwtb2.github.io/RandomBoxWebApplication/) **The website is not available (My Azure student plan is out of credits).)**
 
   
 **How to use the demo website:**  
