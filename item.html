@@ -41,7 +41,7 @@
 
           showLoadingScreen(); // Show loading screen while fetching data
 
-          fetch("http://richy1710-001-site1.btempurl.com/api/Item/GetItems", {
+          fetch("http://richy171099-001-site1.atempurl.com/api/Item/GetItems", {
             method: "GET",
             headers: {
               Authorization: "Bearer " + token,
@@ -61,7 +61,7 @@
             .then((data) => {
               const itemPromises = data.map((item) => {
                 return fetch(
-                  `http://richy1710-001-site1.btempurl.com/api/Item/GetItemDiscriminator/${item.id}`,
+                  `http://richy171099-001-site1.atempurl.com/api/Item/GetItemDiscriminator/${item.id}`,
                   {
                     method: "GET",
                     headers: {
@@ -88,7 +88,7 @@
                 const itemList = itemsOnly.map((item) => {
                   return `
                       <div class="item">
-                        <img src="http://richy1710-001-site1.btempurl.com/api/Item/GetImage/${item.id}" alt="${item.name}" />
+                        <img src="http://richy171099-001-site1.atempurl.com/api/Item/GetImage/${item.id}" alt="${item.name}" />
                         <div>${item.name}</div>
                         <div>Rarity: ${item.rarity}</div>
                         <div>Price: ${item.price}</div>

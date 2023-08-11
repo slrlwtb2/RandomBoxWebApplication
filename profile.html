@@ -45,13 +45,16 @@
               "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"
             ];
 
-          fetch("http://richy1710-001-site1.btempurl.com/api/User/GetBalance", {
-            method: "GET",
-            headers: {
-              Authorization: "Bearer " + token,
-              "Content-Type": "application/json",
-            },
-          })
+          fetch(
+            "http://richy171099-001-site1.atempurl.com/api/User/GetBalance",
+            {
+              method: "GET",
+              headers: {
+                Authorization: "Bearer " + token,
+                "Content-Type": "application/json",
+              },
+            }
+          )
             .then((response) => {
               if (response.ok) {
                 return response.json();

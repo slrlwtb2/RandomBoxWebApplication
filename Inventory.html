@@ -54,7 +54,7 @@
           const decodedToken = parseJwt(token);
           const userId = parseInt(
             decodedToken[
-              "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"
+              "https://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"
             ]
           );
           console.log(userId);
@@ -65,7 +65,7 @@
           if (confirmation) {
             showLoadingScreen();
             fetch(
-              `http://richy1710-001-site1.btempurl.com/api/Inventory/SellItemfromInventory/${itemId}/amount?amount=${amount}`,
+              `http://richy171099-001-site1.atempurl.com/api/Inventory/SellItemfromInventory/${itemId}/amount?amount=${amount}`,
               {
                 method: "PUT",
                 headers: {
@@ -98,7 +98,7 @@
           const decodedToken = parseJwt(token);
           const userId = parseInt(
             decodedToken[
-              "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"
+              "https://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"
             ]
           );
 
@@ -108,7 +108,7 @@
           if (confirmation) {
             showLoadingScreen();
             fetch(
-              `http://richy1710-001-site1.btempurl.com/api/Inventory/openbox/${itemId}`,
+              `http://richy171099-001-site1.atempurl.com/api/Inventory/openbox/${itemId}`,
               {
                 method: "PUT",
                 headers: {
@@ -137,9 +137,9 @@
         showLoadingScreen();
         if (token) {
           var getItemURL =
-            "http://richy1710-001-site1.btempurl.com/api/Inventory/GetById";
+            "http://richy171099-001-site1.atempurl.com/api/Inventory/GetById";
           var getItemDiscriminatorURL =
-            "http://richy1710-001-site1.btempurl.com/api/Item/GetItemDiscriminator";
+            "http://richy171099-001-site1.atempurl.com/api/Item/GetItemDiscriminator";
 
           // Retrieve the inventory data using API call
           fetch(getItemURL, {
@@ -162,7 +162,7 @@
 
                 return `
                   <div class="inventory-item">
-                    <img src="http://richy1710-001-site1.btempurl.com/api/Item/GetImage/${
+                    <img src="http://richy171099-001-site1.atempurl.com/api/Item/GetImage/${
                       item.itemId
                     }" alt="${item.itemName}" style="width: 100px;" />
                     <div>${item.itemName}<br> 

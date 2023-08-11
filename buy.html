@@ -41,7 +41,7 @@
 
         if (token) {
           showLoadingScreen();
-          fetch("http://richy1710-001-site1.btempurl.com/api/Item/GetBoxes", {
+          fetch("https://richy1710-001-site1.btempurl.com/api/Item/GetBoxes", {
             method: "GET",
             headers: {
               Authorization: "Bearer " + token,
@@ -61,7 +61,7 @@
               const itemList = data.map((item) => {
                 return `
             <div class="box-item">
-              <img src="http://richy1710-001-site1.btempurl.com/api/Item/GetImage/${item.id}" alt="${item.name}" />
+              <img src="https://richy1710-001-site1.btempurl.com/api/Item/GetImage/${item.id}" alt="${item.name}" />
               <div>${item.name}</div>
               <div>Rarity: ${item.rarity}</div>
               <div>Price: ${item.price}</div>
@@ -86,7 +86,7 @@
 
         if (token) {
           fetch(
-            `http://richy1710-001-site1.btempurl.com/api/Item/GetItemsinBox/${itemId}`,
+            `https://richy1710-001-site1.btempurl.com/api/Item/GetItemsinBox/${itemId}`,
             {
               method: "GET",
               headers: {
@@ -109,7 +109,7 @@
 
               const itemPromises = data.map((item) => {
                 return fetch(
-                  `http://richy1710-001-site1.btempurl.com/api/Item/GetItemNameById/${item.itemId}`,
+                  `https://richy1710-001-site1.btempurl.com/api/Item/GetItemNameById/${item.itemId}`,
                   {
                     method: "GET",
                     headers: {
@@ -156,7 +156,7 @@
 
         if (token) {
           fetch(
-            `http://richy1710-001-site1.btempurl.com/api/Inventory/BuyBox/${boxId}`,
+            `https://richy1710-001-site1.btempurl.com/api/Inventory/BuyBox/${boxId}`,
             {
               method: "PUT",
               headers: {
